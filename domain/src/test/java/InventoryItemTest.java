@@ -1,4 +1,5 @@
 import FlashSale.domain.entity.InventoryItem;
+import FlashSale.domain.exception.StockInsufficientException;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -33,7 +34,7 @@ public class InventoryItemTest {
                 .quantity(2)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(StockInsufficientException.class, () -> {
             item.decreaseStock(3);
         });
     }
