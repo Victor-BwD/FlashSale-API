@@ -33,7 +33,7 @@ public class InventoryItemTest {
                 .quantity(2)
                 .build();
 
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             item.decreaseStock(3);
         });
     }
