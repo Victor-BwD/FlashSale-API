@@ -1,5 +1,7 @@
 package FlashSale.domain.entity;
 
+import FlashSale.domain.exception.StockInsufficientException;
+
 import java.util.UUID;
 
 public class InventoryItem {
@@ -19,7 +21,7 @@ public class InventoryItem {
         }
 
         if(this.quantity < quantity) {
-            throw new IllegalArgumentException("Insufficient stock to decrease");
+            throw new StockInsufficientException("Insufficient stock to decrease");
         }
 
         this.quantity -= quantity;
