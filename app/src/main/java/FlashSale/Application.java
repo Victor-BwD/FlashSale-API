@@ -1,4 +1,4 @@
-package FlashSale.desafio.flashsale;
+package FlashSale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

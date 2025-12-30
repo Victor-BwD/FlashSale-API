@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: flashsale-engine
+
+  # 🐘 CONFIGURAÇÃO DO POSTGRES
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flashsale_db
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  # ⚙️ CONFIGURAÇÃO DO JPA / HIBERNATE
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # ⚡ CONFIGURAÇÃO DO REDIS
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  # 📨 CONFIGURAÇÃO DO KAFKA
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: flashsale-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
