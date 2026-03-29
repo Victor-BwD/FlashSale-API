@@ -6,14 +6,10 @@ import FlashSale.domain.gateway.InventoryGateway;
 import FlashSale.domain.gateway.OrderGateway;
 import FlashSale.domain.model.OrderStatus;
 import FlashSale.usecase.PlaceOrderUseCase;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import io.cucumber.java.es.Dado;
-import io.cucumber.java.it.Quando;
-import io.cucumber.java.pt.Então;
 
 import java.util.UUID;
+
+import io.cucumber.java.pt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -71,7 +67,7 @@ public class PurchaseProductSteps {
         assertEquals(OrderStatus.valueOf(expectedStatus), generatedOrder.getStatus(), "The order status is incorrect");
     }
 
-    @Então("O estoque do produto deve ser atualizado para {int}")
+    @Então("o estoque do produto deve ser atualizado para {int}")
     public void verifyInventory(Integer expectedStockQuantity) {
         assertEquals(expectedStockQuantity, fakeInventoryInDatabase.getQuantity(), "The inventory quantity was not updated correctly");
     }
