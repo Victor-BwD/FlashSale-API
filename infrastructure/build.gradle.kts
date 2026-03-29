@@ -20,6 +20,10 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers-kafka")
     testImplementation("org.testcontainers:testcontainers-postgresql")
 
+    testImplementation("io.cucumber:cucumber-java:7.31.0")
+    testImplementation("io.cucumber:cucumber-junit-platform-engine:7.31.0")
+    testImplementation("org.junit.platform:junit-platform-suite:1.10.2")
+
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-kafka")

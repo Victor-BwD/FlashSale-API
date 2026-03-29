@@ -30,7 +30,6 @@ public class ProductCatalog {
         private UUID id;
         private String name;
         private BigDecimal price;
-        private Integer stockQuantity;
 
         public Builder id(UUID id) {
             this.id = id;
