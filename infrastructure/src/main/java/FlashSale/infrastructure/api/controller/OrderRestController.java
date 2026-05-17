@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Slf4j
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderRestController {
     private final OrderController orderController; // Adapter
