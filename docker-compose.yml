@@ -1,5 +1,5 @@
 services:
-  # 🐘 PostgreSQL (O Banco de Dados)
+  # 🐘 PostgreSQL
   postgres:
     image: postgres:16-alpine
     container_name: flashsale-postgres
@@ -14,7 +14,7 @@ services:
     networks:
       - flashsale-net
 
-  # ⚡ Redis (O Cache/Estoque Rápido)
+  # ⚡ Redis
   redis:
     image: redis:alpine
     container_name: flashsale-redis
@@ -23,7 +23,7 @@ services:
     networks:
       - flashsale-net
 
-  # 🦓 Zookeeper (O Gerente do Kafka)
+  # 🦓 Zookeeper
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.7
     container_name: flashsale-zookeeper
@@ -35,7 +35,7 @@ services:
     networks:
       - flashsale-net
 
-  # 📨 Kafka (O Carteiro)
+  # 📨 Kafka
   kafka:
     image: confluentinc/cp-kafka:7.7.7
     container_name: flashsale-kafka
@@ -46,7 +46,6 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      # Configuração mágica para funcionar dentro do Docker e na sua máquina (localhost):
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
