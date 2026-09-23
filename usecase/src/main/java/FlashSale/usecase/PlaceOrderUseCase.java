@@ -5,6 +5,7 @@ import FlashSale.domain.entity.Order;
 import FlashSale.domain.gateway.InventoryGateway;
 import FlashSale.domain.gateway.OrderGateway;
 import FlashSale.domain.model.OrderStatus;
+import FlashSale.usecase.dto.OrderUseCaseOutput;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
@@ -14,7 +15,7 @@ public class PlaceOrderUseCase {
     private final InventoryGateway inventoryGateway;
     private final OrderGateway orderGateway;
 
-    public Order execute(UUID customerId, UUID productId, Integer quantity) {
+    public OrderUseCaseOutput execute(UUID customerId, UUID productId, Integer quantity) {
         InventoryItem item = inventoryGateway.findByProductId(productId)
                 .orElseThrow(() -> new RuntimeException("Inventory item not found for product ID: " + productId));
 
@@ -36,6 +37,6 @@ public class PlaceOrderUseCase {
         inventoryGateway.save(item);
         orderGateway.save(order);
 
-        return order;
+        return new OrderUseCaseOutput(order.getId(), order.getCustomerId(), order.getProductId(), order.getQuantity(), order.getStatus().name());
     }
 }

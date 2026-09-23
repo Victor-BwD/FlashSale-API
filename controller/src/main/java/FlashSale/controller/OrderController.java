@@ -1,7 +1,7 @@
 package FlashSale.controller;
 
-import FlashSale.domain.model.OrderStatus;
 import FlashSale.usecase.PlaceOrderUseCase;
+import FlashSale.usecase.dto.OrderUseCaseOutput;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,9 +11,16 @@ public class OrderController {
     private final PlaceOrderUseCase placeOrderUseCase;
 
     public OrderOutput create(OrderInput request) {
-        var order = placeOrderUseCase.execute(request.customerId(), request.productId(), request.quantity());
+        OrderUseCaseOutput useCaseOutput = placeOrderUseCase.execute(request.customerId(), request.productId(), request.quantity());
 
-        return new OrderOutput(order.getId(), order.getCustomerId(), order.getProductId(), order.getQuantity(), "Pedido criado com sucesso.", order.getStatus());
+        return new OrderOutput(
+                useCaseOutput.id(),
+                useCaseOutput.customerId(),
+                useCaseOutput.productId(),
+                useCaseOutput.quantity(),
+                "Pedido criado com sucesso.",
+                useCaseOutput.status()
+        );
     }
 
     public record OrderInput(
@@ -28,6 +35,6 @@ public class OrderController {
             java.util.UUID productId,
             Integer quantity,
             String message,
-            OrderStatus status
+            String status
     ) {}
 }

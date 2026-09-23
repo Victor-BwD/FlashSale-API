@@ -14,17 +14,22 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    runtimeOnly("org.postgresql:postgresql")
+    implementation("org.flywaydb:flyway-core")
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 }
 
-// Habilita a criação do JAR Executável (Fat Jar) apenas para este módulo
+springBoot {
+    mainClass.set("FlashSale.Application")
+}
+
 tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     enabled = true
 }
 
-// Desabilita a criação do JAR simples (sem dependências)
 tasks.getByName<Jar>("jar") {
     enabled = false
 }

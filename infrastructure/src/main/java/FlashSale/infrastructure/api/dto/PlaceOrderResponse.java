@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public record PlaceOrderResponse(
         UUID orderId,
-        OrderStatus status,
+        String status,
         String message
 ) {
 }

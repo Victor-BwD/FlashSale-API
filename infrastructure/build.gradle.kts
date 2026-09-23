@@ -30,10 +30,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-micrometer-metrics")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
 
-    runtimeOnly("org.postgresql:postgresql")
-    implementation("org.flywaydb:flyway-core")
-    runtimeOnly("org.flywaydb:flyway-database-postgresql")
-
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
 }
